@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 )
 data class ShoppingItemEntity(
     val name: String,
-    val amount: String,
+    val amount: Int,
     val price: Float,
     val imageUrl: String,
     @PrimaryKey(autoGenerate = true)
