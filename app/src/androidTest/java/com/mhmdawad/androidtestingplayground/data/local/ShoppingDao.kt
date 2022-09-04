@@ -2,13 +2,12 @@ package com.mhmdawad.androidtestingplayground.data.local
 
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.*
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.mhmdawad.androidtestingplayground.domain.model.ShoppingItemEntity
 import com.mhmdawad.androidtestingplayground.getOrAwaitValue
+import com.mhmdawad.androidtestingplayground.launchFragmentInHiltContainer
+import com.mhmdawad.androidtestingplayground.presentation.ShoppingFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
@@ -16,7 +15,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -46,6 +44,12 @@ class ShoppingDaoTest {
         database.close()
     }
 
+    @Test
+    fun testingME(){
+        launchFragmentInHiltContainer<ShoppingFragment> {
+
+        }
+    }
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    suspend fun insertShoppingItem(shoppingItemEntity: ShoppingItemEntity)
 

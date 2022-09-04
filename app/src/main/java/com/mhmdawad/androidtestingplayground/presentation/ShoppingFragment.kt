@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.mhmdawad.androidtestingplayground.R
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     private lateinit var shoppingViewModel: ShoppingViewModel
