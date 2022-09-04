@@ -9,29 +9,35 @@ import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.mhmdawad.androidtestingplayground.domain.model.ShoppingItemEntity
 import com.mhmdawad.androidtestingplayground.getOrAwaitValue
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
+import javax.inject.Named
 
 @SmallTest
-@RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class ShoppingDaoTest {
+    @get:Rule
+    val hiltAndroidRule = HiltAndroidRule(this)
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: ShoppingDatabase
+
+    @Inject
+    @Named("db_test")
+    lateinit var database: ShoppingDatabase
     private lateinit var shoppingDao: ShoppingDao
 
     @Before
     fun setup(){
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            ShoppingDatabase::class.java
-        ).allowMainThreadQueries().build()
+        hiltAndroidRule.inject()
         shoppingDao = database.shoppingDao()
     }
 
@@ -39,6 +45,7 @@ class ShoppingDaoTest {
     fun teardown(){
         database.close()
     }
+
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    suspend fun insertShoppingItem(shoppingItemEntity: ShoppingItemEntity)
 
