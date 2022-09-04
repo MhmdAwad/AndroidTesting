@@ -6,8 +6,6 @@ import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.mhmdawad.androidtestingplayground.domain.model.ShoppingItemEntity
 import com.mhmdawad.androidtestingplayground.getOrAwaitValue
-import com.mhmdawad.androidtestingplayground.launchFragmentInHiltContainer
-import com.mhmdawad.androidtestingplayground.presentation.ShoppingFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
@@ -44,12 +42,6 @@ class ShoppingDaoTest {
         database.close()
     }
 
-    @Test
-    fun testingME(){
-        launchFragmentInHiltContainer<ShoppingFragment> {
-
-        }
-    }
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    suspend fun insertShoppingItem(shoppingItemEntity: ShoppingItemEntity)
 

@@ -2,6 +2,10 @@ package com.mhmdawad.androidtestingplayground.di
 
 import android.content.Context
 import androidx.room.Room
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.request.RequestOptions
+import com.mhmdawad.androidtestingplayground.R
 import com.mhmdawad.androidtestingplayground.common.Constants
 import com.mhmdawad.androidtestingplayground.data.local.ShoppingDao
 import com.mhmdawad.androidtestingplayground.data.local.ShoppingDatabase
@@ -52,4 +56,12 @@ object AppModule {
         pixabayAPI: PixabayAPI
     ): ShoppingRepository =
         ShoppingRepositoryImpl(shoppingDao, pixabayAPI)
+
+    @Singleton
+    @Provides
+    fun provideGlideRequestManager(@ApplicationContext context: Context): RequestManager{
+        return Glide.with(context).setDefaultRequestOptions(
+            RequestOptions().placeholder(R.drawable.ic_image)
+        )
+    }
 }
